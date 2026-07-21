@@ -1,0 +1,23 @@
+#!/bin/bash
+
+# Add the current directory to the list of safe directories for Git
+# to avoid warnings when using Git in the container
+git config --global --add safe.directory $(pwd)
+
+# Suspend Git's message about moving to `main` as the default branch name
+git config --global init.defaultBranch master
+
+# Add some aliases for convenience
+git config --global alias.tree 'log --all --graph --oneline --decorate'
+git config --global alias.co 'checkout'
+
+echo -e "\nif [ ! -f ${CONTAINER_WORKSPACE_FOLDER}/.envrc ]; then touch ${CONTAINER_WORKSPACE_FOLDER}/.envrc; fi" >> ~/.bashrc
+
+# Enable AWS CLI autocompletion for the `aws` command
+complete -C '/usr/bin/aws_completer' aws
+
+# Copy the .aws directory from the workspace to the home directory
+cp -r ${CONTAINER_WORKSPACE_FOLDER}/.aws ~/ 2>/dev/null || true
+
+# Allow direnv to load environment variables every time a new shell is started
+echo -e "\ndirenv allow ${CONTAINER_WORKSPACE_FOLDER}" >> ~/.bashrc
