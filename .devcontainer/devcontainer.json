@@ -29,7 +29,25 @@
   },
   "customizations": {
     "settings": {
-      "terminal.integrated.shell.linux": "/bin/bash"
+      "terminal.integrated.shell.linux": "/bin/bash",
+      "dprint.path": "/home/vscode/.local/bin/dprint",
+      "dprint.verbose": true,
+      "[toml]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dprint.dprint"
+      },
+      "[markdown]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dprint.dprint"
+      },
+      "[json]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dprint.dprint"
+      },
+      "[yaml]": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "dprint.dprint"
+      }
     },
     "vscode": {
       "extensions": [
@@ -43,7 +61,8 @@
         "docker.docker",
         "Codecov.codecov",
         "anthropic.claude-code",
-        "redhat.vscode-yaml"
+        "redhat.vscode-yaml",
+        "dprint.dprint"
       ]
     }
   },
